@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>ЯR — доставка и услуги в Красноярском районе</title>
+  <meta name="description" content="ЯR Еда: любимые блюда кафе Красноярского района в одном месте. Скоро — клининг, мастера и покос газона.">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="ЯR">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@600;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- заставка с логотипом -->
+  <div class="splash" id="splash" aria-hidden="true">
+    <div class="splash-logo"><span class="l-ya">Я</span><span class="l-r">R</span></div>
+    <div class="splash-sub">Красноярский район</div>
+  </div>
+
+  <header class="topbar" id="topbar">
+    <div class="wrap topbar-in">
+      <a href="#/" class="logo" aria-label="ЯR — на главную"><span class="l-ya">Я</span><span class="l-r">R</span></a>
+      <button class="place" id="placeBtn" type="button">
+        <svg viewBox="0 0 24 24" width="18" height="18"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="10" r="2.6" fill="currentColor"/></svg>
+        <span><small>Доставка в</small><b id="placeName">Красный Яр</b></span>
+        <svg class="chev" viewBox="0 0 24 24" width="16" height="16"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+      </button>
+      <nav class="topnav">
+        <a href="#/" data-nav="home">Главная</a>
+        <a href="#/food" data-nav="food">ЯR Еда</a>
+      </nav>
+      <button class="cart-btn" id="cartBtn" type="button" aria-label="Корзина">
+        <svg viewBox="0 0 24 24" width="22" height="22"><path d="M5 7h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8L5 7z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9 7V6a3 3 0 0 1 6 0v1" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+        <span class="cart-sum" id="cartSum"></span>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="app" class="app"></main>
+
+  <footer class="footer">
+    <div class="wrap footer-in">
+      <div class="logo logo-sm"><span class="l-ya">Я</span><span class="l-r">R</span></div>
+      <p>Агрегатор доставки и услуг Красноярского района Самарской области.<br>Красный Яр · Мирный · Угловой · Екатериновка · Новая Семейкина · Малая Царевщина · Солонцовка · Яр Парк · Фэмили Парк · посёлки «Ассет» · Грибы · Ёлки</p>
+      <p class="muted">© 2026 ЯR</p>
+    </div>
+  </footer>
+
+  <!-- нижняя навигация (телефон) -->
+  <nav class="tabbar" id="tabbar">
+    <a href="#/" data-nav="home"><svg viewBox="0 0 24 24"><path d="M4 11 12 4l8 7v8a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>Главная</a>
+    <a href="#/food" data-nav="food"><svg viewBox="0 0 24 24"><path d="M7 3v8m-3-8v5a3 3 0 0 0 6 0V3M7 11v10M17 21V3c-2.5 1-4 4-4 8h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Еда</a>
+    <button type="button" id="tabCart"><svg viewBox="0 0 24 24"><path d="M5 7h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8L5 7z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9 7V6a3 3 0 0 1 6 0v1" fill="none" stroke="currentColor" stroke-width="2"/></svg>Корзина<i id="tabCount"></i></button>
+  </nav>
+
+  <!-- выбор посёлка -->
+  <div class="sheet" id="placeSheet" hidden>
+    <div class="sheet-bg" data-close></div>
+    <div class="sheet-card">
+      <div class="sheet-head"><h3>Куда доставить?</h3><button class="x" data-close aria-label="Закрыть">×</button></div>
+      <p class="muted">Работаем по Красноярскому району Самарской области</p>
+      <div class="place-list" id="placeList"></div>
+    </div>
+  </div>
+
+  <!-- карточка блюда -->
+  <div class="sheet" id="dishSheet" hidden>
+    <div class="sheet-bg" data-close></div>
+    <div class="sheet-card dish-card" id="dishCard"></div>
+  </div>
+
+  <!-- корзина -->
+  <div class="drawer" id="cart" hidden>
+    <div class="sheet-bg" data-close></div>
+    <aside class="drawer-card" id="cartCard"></aside>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
